@@ -39,6 +39,7 @@ At the SLAC/USDF site, install and configure a personal HTCondor pool and run BP
 }
 
 
+
 \begin{document}
 
 % Create the title page.
@@ -48,6 +49,21 @@ At the SLAC/USDF site, install and configure a personal HTCondor pool and run BP
 
 % ADD CONTENT HERE
 % You can also use the \input command to include several content files.
+
+Setup the current lsst_distrib
+Get condor - condor is not included with lsst stack,  so it needs to be installed locally. 
+Run:
+
+ pip3 install --user htcondor
+ 
+ There are several htcondor configuration files the user needs to set up a personall condor.
+ \begin{itemize}
+ \item Setup.env
+ \item glide.tar
+ \item condor.tar
+ \end{itemize}
+They all can be downloaded from htps....
+
 
 \appendix
 % Include all the relevant bib files.
