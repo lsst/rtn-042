@@ -49,20 +49,52 @@ At the SLAC/USDF site, install and configure a personal HTCondor pool and run BP
 
 % ADD CONTENT HERE
 % You can also use the \input command to include several content files.
+\section{Basic setup}
+ Setup the current LSST stack 
 
-Setup the current lsstdistrib
-Get condor - condor is not included with lsst stack,  so it needs to be installed locally. 
-Run:
+Get HTCondor - condor is not included with the LSST stack, so install it locally. 
+Check if the HTCondor is there. Try to import it from python shell. If it is not there, install it with
 
- pip3 install --user htcondor
+ pip3 install --user htcondor  
  
- There are several htcondor configuration files the user needs to set up a personall condor.
- \begin{itemize}
- \item Setup.env
- \item glide.tar
- \item condor.tar
- \end{itemize}
-They all can be downloaded from htps....
+There are several htcondor configuration files the user needs to set up a personal condor.
+Download package condor.tar.gz, and unpack it on Rubin machines at SLAC.
+The package can be downloaded from Jira (for now) 
+
+Untar it and edit files that specify  username:
+
+Untar it and edit files that specify your username:
+\begin{itemize}
+\item condor/condor_config: change  VAR_FOR_HOME
+\item server_bootstrap.sh 
+\end{itemize}
+
+There are two scripts to get started: server_bootstrap.sh and  client_env_setup.sh
+Use the first one to create catalogs, setup system variables and start personal condor.
+The second one you use when your personal condor is running,  just to create catalogs (if they are not there) and to setup all paths.
+For example, after logging out from a session and login back in.
+
+
+\section{Condor glide in}
+A script to create 12h glide-in to slurm is located here:
+
+condor/glidein/exec.sl
+
+The default configuration requests 1 node for 12 hours.
+To create glide-in run:
+
+sbatch <path_to>/exec.sl
+
+Check the status of the glide in with
+
+squeue
+
+Once is running, execute bps submit <your_pipeline.yaml>
+
+
+\end{itemize}
+
+
 
 
 \appendix
